@@ -1,69 +1,144 @@
-import Image from "next/image";
+const LIEN_PAIEMENT = "#";
+const EMAIL = "lesmotsquongardepoursoi@gmail.com";
 
-export default function Home() {
+const benefices = [
+  {
+    t: "Zéro découpage",
+    d: "Tu déposes ton live, ton podcast ou ta formation. Les moments forts sont repérés pour toi.",
+  },
+  {
+    t: "Prêts à publier",
+    d: "Format vertical, 30 à 60 secondes, sous-titres incrustés et un titre proposé pour chaque clip.",
+  },
+  {
+    t: "60 clips par mois",
+    d: "De quoi publier tous les jours sur TikTok, Reels et Shorts sans y passer tes soirées.",
+  },
+];
+
+const etapes = [
+  "Tu commences en un clic.",
+  "Tu m’envoies le lien ou le fichier de ta vidéo par email.",
+  "Tu reçois tes clips sous 48 h, prêts à publier.",
+];
+
+const faq = [
+  {
+    q: "Est-ce que ça marche pour mon contenu ?",
+    r: "Oui si tu publies du format long : podcast, live, formation, interview. Si ton contenu ne s’y prête pas, tu es remboursé.",
+  },
+  {
+    q: "Combien de temps ça me prend ?",
+    r: "Deux minutes : tu m’envoies ton lien. Tes clips arrivent sous 48 h.",
+  },
+  {
+    q: "Et si je veux arrêter ?",
+    r: "Tu résilies quand tu veux, en un message. Pas de durée minimale. Dans les 14 premiers jours, tu es remboursé.",
+  },
+  {
+    q: "À quoi sert exactement ce que je paie ?",
+    r: "À 60 clips verticaux par mois : repérage des moments forts, découpe, sous-titres et titres proposés.",
+  },
+];
+
+function Bouton({ className = "" }: { className?: string }) {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <a
+      href={LIEN_PAIEMENT}
+      className={`block rounded-2xl bg-signal px-6 py-4 text-center text-lg font-bold text-encre active:translate-y-px ${className}`}
+    >
+      Commencer
+    </a>
+  );
+}
+
+export default function Page() {
+  return (
+    <main className="mx-auto max-w-xl px-5 pb-32 pt-6">
+      <p className="font-titre text-xl font-extrabold tracking-tight">
+        Clipperie <span className="text-sm font-medium opacity-60">par EasySelf</span>
+      </p>
+
+      <section className="pt-10">
+        <h1 className="font-titre text-5xl font-extrabold leading-[1.02] tracking-tight">
+          Ton live de 2&nbsp;heures devient{" "}
+          <span className="text-signal">30 clips verticaux.</span>
+        </h1>
+        <p className="mt-5 text-lg leading-relaxed">
+          Dépose ta vidéo. Reçois des clips de 30 à 60&nbsp;secondes, sous-titrés, prêts à publier.
+        </p>
+        <Bouton className="mt-7" />
+        <p className="mt-3 text-center text-sm">
+          49&nbsp;€/mois · sans engagement · remboursé sous 14&nbsp;jours
+        </p>
+      </section>
+
+      <section className="mt-14 rounded-3xl bg-encre p-6 text-creme">
+        <p className="font-titre text-2xl font-extrabold leading-tight">
+          Découper une seule vidéo prend une journée entière.
+        </p>
+        <p className="mt-3 leading-relaxed opacity-90">
+          Alors tu ne le fais pas, et le format court, celui qui amène de nouvelles audiences,
+          reste vide.
+        </p>
+      </section>
+
+      <section className="mt-14 space-y-6">
+        {benefices.map((b) => (
+          <div key={b.t} className="border-l-4 border-signal pl-4">
+            <h2 className="font-titre text-xl font-bold">{b.t}</h2>
+            <p className="mt-1 leading-relaxed">{b.d}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="mt-14">
+        <h2 className="font-titre text-2xl font-extrabold">Comment ça se passe</h2>
+        <ol className="mt-4 space-y-3">
+          {etapes.map((e, i) => (
+            <li key={e} className="flex gap-3">
+              <span className="font-titre text-2xl font-extrabold text-signal">{i + 1}</span>
+              <span className="pt-1">{e}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="mt-14 rounded-3xl border-2 border-encre p-6">
+        <p className="font-titre text-5xl font-extrabold">
+          49&nbsp;€<span className="text-lg font-bold">/mois</span>
+        </p>
+        <p className="mt-1">60 clips par mois, soit environ 1,60&nbsp;€ par jour.</p>
+        <div className="mt-5 rounded-2xl bg-encre p-4 text-creme">
+          <p className="font-bold">Satisfait ou remboursé, 14 jours.</p>
+          <p className="mt-1 text-sm leading-relaxed">
+            Pas convaincu ? Écris à {EMAIL} dans les 14 jours suivant ton paiement. Remboursement
+            intégral sous 5 jours ouvrés, sans justification.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <Bouton className="mt-5" />
+        <p className="mt-3 text-center text-sm">Sans engagement, résiliable à tout moment.</p>
+      </section>
+
+      <section className="mt-14">
+        <h2 className="font-titre text-2xl font-extrabold">Questions fréquentes</h2>
+        <div className="mt-4 divide-y divide-encre/20 border-y border-encre/20">
+          {faq.map((f) => (
+            <details key={f.q} className="py-4">
+              <summary className="cursor-pointer font-bold">{f.q}</summary>
+              <p className="mt-2 leading-relaxed">{f.r}</p>
+            </details>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <footer className="mt-14 text-sm opacity-70">
+        <p>© EasySelf · {EMAIL}</p>
+      </footer>
+
+      <div className="fixed inset-x-0 bottom-0 border-t border-encre/10 bg-creme/95 p-3 md:hidden">
+        <Bouton />
+      </div>
+    </main>
   );
 }
