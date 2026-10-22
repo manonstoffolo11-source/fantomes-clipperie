@@ -1,4 +1,5 @@
-const LIEN_PAIEMENT = "#";
+const LIEN_PAIEMENT = "https://buy.stripe.com/test_eVqdR86jA8G4glI4tTaVa00";
+
 const EMAIL = "lesmotsquongardepoursoi@gmail.com";
 
 const benefices = [
